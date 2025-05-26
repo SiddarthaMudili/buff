@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                apt install python3-fire
+                sudo apt install -y python3-fire
                 '''
             }
         }
