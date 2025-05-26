@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                apt install -r requirements.txt
+                apt install requirements.txt -y
                 '''
             }
         }
