@@ -12,7 +12,9 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                apt install requirements.txt -y
+                python3
+                pip install -r requirements.txt
+                exit
                 '''
             }
         }
