@@ -13,7 +13,6 @@ pipeline {
             steps {
                 echo 'Hello World from Jenkins Pipeline!'
                 echo 'This pipeline is running from GitHub repository'
-                neofetch
                 // You can also run shell commands
                 sh 'echo "Hello from shell command"'
                 sh 'pwd'
