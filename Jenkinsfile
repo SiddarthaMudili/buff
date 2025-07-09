@@ -2,66 +2,44 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout from GitHub') {
+        stage('Checkout') {
             steps {
-                echo 'Checking out code from GitHub repository...'
-                git branch: 'main', 
-                    url: 'https://github.com/yourusername/your-repo.git'
+                echo 'Checking out code from GitHub...'
+                // Code is automatically checked out in declarative pipeline
             }
         }
         
         stage('Hello World') {
             steps {
-                echo 'Hello World from Jenkins!'
-                echo 'Successfully pulled code from GitHub'
+                echo 'Hello World from Jenkins Pipeline!'
+                echo 'This pipeline is running from GitHub repository'
                 
-                // Display repository contents
-                sh 'echo "Repository contents:"'
+                // You can also run shell commands
+                sh 'echo "Hello from shell command"'
+                sh 'pwd'
                 sh 'ls -la'
-                
-                // If you have a specific file in your repo
-                script {
-                    if (fileExists('README.md')) {
-                        sh 'echo "README.md exists!"'
-                        sh 'head -5 README.md'
-                    }
-                }
             }
         }
         
-        stage('Run Custom Script') {
+        stage('Environment Info') {
             steps {
-                echo 'Running custom commands...'
-                
-                // If you have a script in your repository
-                script {
-                    if (fileExists('hello.sh')) {
-                        sh 'chmod +x hello.sh'
-                        sh './hello.sh'
-                    } else {
-                        echo 'No hello.sh script found, creating one...'
-                        sh '''
-                            echo "#!/bin/bash" > hello.sh
-                            echo "echo 'Hello World from custom script!'" >> hello.sh
-                            chmod +x hello.sh
-                            ./hello.sh
-                        '''
-                    }
-                }
+                echo 'Displaying environment information...'
+                sh 'whoami'
+                sh 'date'
+                sh 'uname -a'
             }
         }
     }
     
     post {
         always {
-            echo 'Cleaning up workspace...'
-            cleanWs()
+            echo 'Pipeline completed!'
         }
         success {
-            echo 'Pipeline completed successfully!'
+            echo 'Pipeline succeeded!'
         }
         failure {
-            echo 'Pipeline failed. Check logs for details.'
+            echo 'Pipeline failed!'
         }
     }
 }
