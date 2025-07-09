@@ -14,7 +14,6 @@ pipeline {
                 echo 'Hello World from Jenkins Pipeline!'
                 echo 'This pipeline is running from GitHub repository'
                 // You can also run shell commands
-                sh neofetch
                 sh 'echo "Hello from shell command"'
                 sh 'pwd'
                 sh 'ls -la'
